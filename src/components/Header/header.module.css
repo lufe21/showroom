@@ -1,7 +1,7 @@
 .header {
   border-bottom: 1px solid #eee;
   background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+ 
 }
 
 .top {
@@ -34,10 +34,11 @@
 
 .nav a {
   text-decoration: none;
-  color: rgb(88, 86, 86);
+  color: rgb(64, 63, 63);
 }
 
 .nav a:hover {
   text-decoration: underline;
   transition: all 0.3s ease;
+  color: rgb(254, 157, 204);
 }

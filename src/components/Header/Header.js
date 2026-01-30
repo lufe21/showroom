@@ -23,7 +23,7 @@ export default function Header() {
 
       {open && (
         <nav className={style.nav}>
-          <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+          <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
           <Link href="/productos" onClick={() => setOpen(false)}>Productos</Link>
           <Link href="/contacto" onClick={() => setOpen(false)}>Contacto</Link>
         </nav>
