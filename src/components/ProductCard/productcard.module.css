@@ -1,0 +1,85 @@
+/* CONTENEDOR DE LA TARJETA */
+.cardContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    width: 250px;
+}
+
+
+.card {
+    background: rgba(241, 170, 205, 0.562);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    
+}
+
+/* IMAGEN */
+.imageWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.imageWrapper img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+/* BADGE */
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(229, 231, 235, 0.9);
+    backdrop-filter: blur(6px);
+    color: #111;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+
+/* FAVORITO */
+.fav {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* INFO */
+.info {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: #111;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #9b4b5a;
+    /* rosado elegante */
+}
