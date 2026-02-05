@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./heroCarousel.module.css";
 
-export default function HeroCarousel({ images }) {
+export default function HeroCarousel({ images = [] }) {
     const [index, setIndex] = useState(0);
     const touchStartX = useRef(0);
     const touchEndX = useRef(0);
 
-    // autoplay
+    // ⛔ si no hay imágenes, no renderizar nada
+    if (!images.length) return null;
+
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % images.length);
@@ -17,7 +19,6 @@ export default function HeroCarousel({ images }) {
         return () => clearInterval(interval);
     }, [images.length]);
 
-    // swipe handlers
     const handleTouchStart = (e) => {
         touchStartX.current = e.touches[0].clientX;
     };
@@ -31,13 +32,9 @@ export default function HeroCarousel({ images }) {
         const diff = touchStartX.current - touchEndX.current;
 
         if (diff > 50) {
-            // swipe left
             setIndex((prev) => (prev + 1) % images.length);
         } else if (diff < -50) {
-            // swipe right
-            setIndex((prev) =>
-                prev === 0 ? images.length - 1 : prev - 1
-            );
+            setIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
         }
     };
 
@@ -51,19 +48,16 @@ export default function HeroCarousel({ images }) {
                 <img
                     key={i}
                     src={img.url}
-                    className={`${styles.image} ${i === index ? styles.active : ""
-                        }`}
+                    className={`${styles.image} ${i === index ? styles.active : ""}`}
                     alt=""
                 />
             ))}
 
-            {/* INDICADORES */}
             <div className={styles.dots}>
                 {images.map((_, i) => (
                     <button
                         key={i}
-                        className={`${styles.dot} ${i === index ? styles.activeDot : ""
-                            }`}
+                        className={`${styles.dot} ${i === index ? styles.activeDot : ""}`}
                         onClick={() => setIndex(i)}
                     />
                 ))}

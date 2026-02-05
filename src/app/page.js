@@ -1,64 +1,69 @@
 import styles from "./page.module.css";
-import React from "react";
+import Link from "next/link";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import HeroCarousel from "@/components/HeroCarousel/HeroCarousel";
+import { createClient } from "@supabase/supabase-js";
 
-const heroImages = [
-  { url: "/images/hero.jpg" },
-  { url: "/images/donde-comprar.webp" },
-  { url: "/images/donde-comprar.webp" },
-];
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
-export default function Home() {
+export default async function Home() {
+  // 🔹 Productos destacados
+  const { data: products } = await supabase
+    .from("products")
+    .select("*")
+    .limit(4);
+
+  // 🔹 Imagenes carrousel
+  const { data: heroImages, error } = await supabase
+    .from("carousel_images")
+    .select("image_url")
+    .eq("is_active", true);
+
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-      <section className={styles.HeroCarousel}>
 
-        <HeroCarousel images={heroImages} />
-      </section>
-      <h1>Rox Showroom</h1>
-      <p>¡Descubre nuestros productos y ofertas exclusivas!</p> 
-      <section className={styles.cardContainer}>
-        <ProductCard
-          image="/images/remera.webp"
-          title="Premium Headphones"
-          price={199.99}
-          badge="Nuevo"
-        />
-        <ProductCard
-          image="/images/remera.webp"
-          width="100"
-          height="100"
-          title="Classic T-Shirt"
-          price={29.99}
-        />
-        <ProductCard
-          image="/images/remera.webp"
-          title="Wireless Earbuds"
-          price={129.99}
-        />
-                <ProductCard
-          image="/images/remera.webp"
-          title="Wireless Earbuds"
-          price={129.99}
-        />
-                <ProductCard
-          image="/images/remera.webp"
-          title="Wireless Earbuds"
-          price={129.99}
-        />
-                <ProductCard
-          image="/images/remera.webp"
-          title="Wireless Earbuds"
-          price={129.99}
-        />
-                <ProductCard
-          image="/images/remera.webp"
-          title="Wireless Earbuds"
-          price={129.99}
-        />
-      </section>
+        <section className={styles.HeroCarousel}>
+          <HeroCarousel
+            images={heroImages?.map((img) => ({
+              url: img.image_url,
+            }))}
+          />
+
+        </section>
+
+        <section className={styles.showroomIntro}>
+          <img
+            src="/images/logo-showroom.png"
+            alt="Logo"
+            className={styles.logo}
+          />
+          <p>¡Descubre nuestros productos y ofertas exclusivas!</p>
+        </section>
+
+        <section className={styles.headerSection}>
+          <h2 className={styles.sectionTitle}>Productos Destacados</h2>
+          <Link href="/catalogo" className={styles.exploraCatalogo}>
+            Explora nuestro catálogo
+          </Link>
+        </section>
+
+        <section className={styles.cardContainer}>
+          {products?.map((product) => (
+            <ProductCard
+              key={product.id}
+              image={product.image_url}
+              title={product.name}
+              price={product.price}
+              badge={product.badge}
+            />
+          ))}
+        </section>
+
       </main>
     </div>
   );
