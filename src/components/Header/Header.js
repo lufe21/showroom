@@ -54,7 +54,7 @@ export default function Header() {
     <header ref={headerRef} className={`${style.header} ${hidden ? style.hidden : ""} ${scrolled ? style.scrolled : ""}`}>
       <div className={style.top}>
         <div className={style.logo}>
-          {/* Coloca aquí tu imagen en /public/images/logo.png */}
+          {/* ACA imagen en /public/images/logo.png */}
           <img src="/images/logo-showroom.png" alt="Showroom Rox" className={style.logoImg} />
         </div>
 

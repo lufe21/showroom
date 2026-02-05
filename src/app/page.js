@@ -1,13 +1,24 @@
 import styles from "./page.module.css";
 import React from "react";
 import ProductCard from "@/components/ProductCard/ProductCard";
+import HeroCarousel from "@/components/HeroCarousel/HeroCarousel";
+
+const heroImages = [
+  { url: "/images/hero.jpg" },
+  { url: "/images/donde-comprar.webp" },
+  { url: "/images/donde-comprar.webp" },
+];
 
 export default function Home() {
   return (
     <div className={styles.page}>
+      <main className={styles.main}>
+      <section className={styles.HeroCarousel}>
+
+        <HeroCarousel images={heroImages} />
+      </section>
       <h1>Rox Showroom</h1>
       <p>¡Descubre nuestros productos y ofertas exclusivas!</p> 
-      <main className={styles.main}>
       <section className={styles.cardContainer}>
         <ProductCard
           image="/images/remera.webp"

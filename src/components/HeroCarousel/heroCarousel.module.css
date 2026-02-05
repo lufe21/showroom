@@ -1,0 +1,57 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 70vh;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+/* IMÁGENES */
+.image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.active {
+    opacity: 1;
+}
+
+/* DOTS */
+.dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 24px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.activeDot {
+    background: white;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .carousel {
+        max-height: 45vh;
+    }
+
+    .dot {
+        width: 18px;
+    }
+}
