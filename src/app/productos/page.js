@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabaseClient";
 import ProductCard from "@/components/ProductCard/ProductCard";
 
 export default function Catalogo() {
-    const [products, setProducts] = useState([]);
+    /*const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -22,10 +22,13 @@ export default function Catalogo() {
         };
 
         fetchProducts();
-    }, []);
+    }, []);*/
 
     return (
-        <section className="cardGrid">
+        <>
+            <h1 className="">PROXIMAMENTE...</h1>
+        </>
+        /*<section className="cardGrid">
             {products.map((p) => (
                 <ProductCard
                     key={p.id}
@@ -35,6 +38,6 @@ export default function Catalogo() {
                     badge={p.badge}
                 />
             ))}
-        </section>
+        </section>*/
     );
 }
