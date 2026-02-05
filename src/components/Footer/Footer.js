@@ -38,9 +38,9 @@ export default function Footer() {
                 <nav className={styles.nav} aria-label="Enlaces principales">
                     <ul className={styles.linkList}>
                         <li><Link href="/">Inicio</Link></li>
-                        <li><Link href="/productos">Productos</Link></li>
+                        <li><Link href="/productos">Catalogo</Link></li>
                         <li><Link href="/contacto">Contacto</Link></li>
-                        <li><Link href="/catalogo">Catálogo</Link></li>
+                        
                     </ul>
                 </nav>
 
