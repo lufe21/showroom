@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
-    background: rgb(150, 55, 102);
+    background: #f3c3e0;
+    
     /*(252, 147, 199, 0.63) rosa */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -36,7 +37,7 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    background: rgba(150, 55, 102, 0.555);
+    background: #f8c0e3;
     backdrop-filter: blur(6px);
     color: #000000;
     font-size: 12px;
@@ -94,7 +95,7 @@
     padding: 8px 12px;
     width: 200px; /* ancho reducido ligeramente */
     align-self: center; /* centra el botón dentro del flex column */
-    background-color: #eb8fa0;
+    background-color: #f895a9;
     color: white;
     border: none;
     border-radius: 4px;
@@ -105,7 +106,7 @@
 }
 
 .button:hover {
-    background-color: #7a3744;
+    background-color: #f889a1;
     transform: scale(1.1);
 }
 

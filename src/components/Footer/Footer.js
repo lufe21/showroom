@@ -5,6 +5,9 @@ import styles from "./footer.module.css";
 
 export default function Footer() {
     return (
+
+
+        
         <footer className={styles.footer}>
             <div className={styles.container}>
                 <div className={styles.brand}>
@@ -40,6 +43,7 @@ export default function Footer() {
                         <li><Link href="/">Inicio</Link></li>
                         <li><Link href="/productos">Catalogo</Link></li>
                         <li><Link href="/contacto">Contacto</Link></li>
+                        <li><Link href="/admin/login">Iniciar Sesión</Link></li>
                         
                     </ul>
                 </nav>
@@ -53,6 +57,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
+            
             <div className={styles.credit}>
                 Creado por: <span className={styles.author}>Lucas.H</span>
             </div>
