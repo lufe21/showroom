@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import styles from "./page.module.css";
 import Link from "next/link";
 import ProductCard from "@/components/ProductCard/ProductCard";
