@@ -54,7 +54,7 @@ export default async function Home() {
 
         <section className={styles.cardContainer}>
           {products?.map((product) => (
-            <ProductCard
+            <ProductCard  
               key={product.id}
               image={product.image_url}
               title={product.name}

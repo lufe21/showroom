@@ -1,6 +1,14 @@
+"use client";
 import style from "./productcard.module.css";
 
 export default function ProductCard({ image, title, price, badge }) {
+    const handleConsultar = () => {
+        window.open(
+            "https://api.whatsapp.com/send/?phone=1144160737&text=Hola%20quiero%20consultar%20sobre%20los%20productos&type=phone_number&app_absent=0",
+            "_blank"
+        );
+    };
+
     return (
     <div className={style.cardContainer}>
         <div className={`${style.card}`}>
@@ -12,7 +20,7 @@ export default function ProductCard({ image, title, price, badge }) {
             <div className={style.info}>
                 <h3 className={style.title}>{title}</h3>
                 <p className={style.price}>${price}</p>
-                <button className={style.button}><a target="_blank" href="https://api.whatsapp.com/send/?phone=1144160737&text&type=phone_number&app_absent=0">Consultar</a></button>
+                <button onClick={handleConsultar} className={style.button}><a target="_blank">Consultar</a></button>
             </div>
         </div>
     </div>

@@ -1,34 +1,108 @@
-.page {
-    padding: 32px;
-}
-
-.addBtn {
-    margin: 16px 0;
-}
-
-.list {
+/* GRID RESPONSIVE PARA PRODUCTOS */
+.grid {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 22vw, 280px), 1fr));
     gap: 16px;
 }
 
 .card {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 16px;
-    align-items: center;
-    background: white;
-    padding: 12px;
-    border-radius: 12px;
-}
-
-.card img {
-    width: 80px;
-    height: 100px;
-    object-fit: cover;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
     border-radius: 8px;
+    padding: 15px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.actions {
-    display: flex;
-    gap: 8px;
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.card h4 {
+    margin: 12px 0 8px 0;
+    font-size: 16px;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.card p {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff6b9d;
+}
+
+.image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* RESPONSIVE - MOBILE FIRST */
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 12px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .card h4 {
+        font-size: 14px;
+        margin: 10px 0 6px 0;
+    }
+
+    .card p {
+        font-size: 16px;
+        margin: 0 0 12px 0;
+    }
+
+    .image {
+        height: 150px;
+        margin-bottom: 8px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+    }
+
+    .card h4 {
+        font-size: 15px;
+    }
+
+    .card p {
+        font-size: 17px;
+    }
+
+    .image {
+        height: 180px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card h4 {
+        font-size: 16px;
+    }
+
+    .image {
+        height: 220px;
+    }
 }
