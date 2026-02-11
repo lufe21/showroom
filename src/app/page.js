@@ -49,7 +49,7 @@ export default async function Home() {
 
         <section className={styles.headerSection}>
           <h2 className={styles.sectionTitle}>Productos Destacados</h2>
-          <Link href="/catalogo" className={styles.exploraCatalogo}>
+          <Link href="/productos" className={styles.exploraCatalogo}>
             Explora nuestro catálogo
           </Link>
         </section>
