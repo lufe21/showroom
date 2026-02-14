@@ -15,6 +15,7 @@ export default function ProductsAdminPage() {
     const [editingId, setEditingId] = useState(null);
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
+    const [badge, setBadge] = useState("");
     const [imageFile, setImageFile] = useState(null);
     const [imageUrl, setImageUrl] = useState("");
 
@@ -124,6 +125,7 @@ export default function ProductsAdminPage() {
                     .update({
                         name,
                         price,
+                        badge: badge || null,
                         image_url: finalImageUrl,
                     })
                     .eq("id", editingId);
@@ -134,6 +136,7 @@ export default function ProductsAdminPage() {
                 const { error } = await supabase.from("products").insert({
                     name,
                     price,
+                    badge: badge || null,
                     image_url: finalImageUrl,
                 });
 
@@ -173,6 +176,7 @@ export default function ProductsAdminPage() {
         setEditingId(product.id);
         setName(product.name);
         setPrice(product.price);
+        setBadge(product.badge || "");
         setImageUrl(product.image_url);
         setImageFile(null);
     }
@@ -181,6 +185,7 @@ export default function ProductsAdminPage() {
         setEditingId(null);
         setName("");
         setPrice("");
+        setBadge("");
         setImageFile(null);
         setImageUrl("");
     }
@@ -235,6 +240,21 @@ export default function ProductsAdminPage() {
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         required
+                        style={{
+                            padding: "12px",
+                            border: "1px solid #ddd",
+                            borderRadius: "8px",
+                            fontSize: "14px",
+                            width: "100%",
+                            boxSizing: "border-box"
+                        }}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="Badge (opcional - ej: Nuevo, -20%, Oferta)"
+                        value={badge}
+                        onChange={(e) => setBadge(e.target.value)}
                         style={{
                             padding: "12px",
                             border: "1px solid #ddd",
@@ -332,6 +352,11 @@ export default function ProductsAdminPage() {
                                     )}
 
                                     <h4 style={{ margin: "12px 0 8px 0", fontSize: "16px", color: "#333" }}>{p.name}</h4>
+                                    {p.badge && (
+                                        <p style={{ margin: "0 0 8px 0", fontSize: "12px", color: "#ff6b9d", fontWeight: "600" }}>
+                                            🏷️ {p.badge}
+                                        </p>
+                                    )}
                                     <p style={{ margin: "0 0 15px 0", fontSize: "18px", fontWeight: "bold", color: "#ff6b9d" }}>${p.price}</p>
 
                                     <div style={{ display: "flex", gap: "8px", flexDirection: "column" }}>

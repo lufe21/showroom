@@ -10,6 +10,14 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
+export const metadata = {
+  title: "Showroom",
+  description: "Descubre nuestros productos y ofertas exclusivas",
+  icons: {
+    icon: "/favicon.svg",
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="es">

@@ -12,11 +12,12 @@ const supabase = createClient(
 );
 
 export default async function Home() {
-  // 🔹 Productos destacados
+  // 🔹 Productos destacados (últimos 10 agregados)
   const { data: products } = await supabase
     .from("products")
     .select("*")
-    .limit(4);
+    .order("created_at", { ascending: false })
+    .limit(10);
 
   // 🔹 Imagenes carrousel
   const { data: heroImages, error } = await supabase
@@ -62,6 +63,7 @@ export default async function Home() {
               title={product.name}
               price={product.price}
               badge={product.badge}
+              category={product.category}
             />
           ))}
         </section>

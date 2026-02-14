@@ -1,7 +1,7 @@
 "use client";
 import style from "./productcard.module.css";
 
-export default function ProductCard({ image, title, price, badge }) {
+export default function ProductCard({ image, title, price, badge, category }) {
     const handleConsultar = () => {
         window.open(
             "https://api.whatsapp.com/send/?phone=1144160737&text=Hola%20quiero%20consultar%20sobre%20los%20productos&type=phone_number&app_absent=0",
