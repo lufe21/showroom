@@ -23,7 +23,7 @@ export default function ProductsAdminPage() {
     const VALID_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "webp"];
 
     /* =======================
-       VALIDAR IMAGEN
+    VALIDAR IMAGEN
     ======================= */
     function validateImage(file) {
         if (!file) return true;
@@ -159,11 +159,18 @@ export default function ProductsAdminPage() {
     async function deleteProduct(id, img) {
         if (!confirm("¿Eliminar producto?")) return;
 
+        // Eliminar de la tabla
         await supabase.from("products").delete().eq("id", id);
 
+        // Eliminar del storage
         if (img) {
-            const fileName = img.split("/").pop();
-            await supabase.storage.from("products").remove([fileName]);
+            const path = img.split("/products/")[1]; // obtiene el path real dentro del bucket
+
+            if (path) {
+                await supabase.storage
+                    .from("products")
+                    .remove([path]);
+            }
         }
 
         fetchProducts();
