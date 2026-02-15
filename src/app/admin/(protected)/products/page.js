@@ -22,9 +22,7 @@ export default function ProductsAdminPage() {
     const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
     const VALID_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "webp"];
 
-    /* =======================
-    VALIDAR IMAGEN
-    ======================= */
+    /*VALIDAR IMAGEN */
     function validateImage(file) {
         if (!file) return true;
 
@@ -45,9 +43,7 @@ export default function ProductsAdminPage() {
         return true;
     }
 
-    /* =======================
-       MANEJAR CAMBIO DE ARCHIVO
-    ======================= */
+    /*MANEJAR CAMBIO DE ARCHIVO*/
     function handleImageChange(e) {
         const file = e.target.files[0];
         if (validateImage(file)) {
@@ -57,9 +53,7 @@ export default function ProductsAdminPage() {
         }
     }
 
-    /* =======================
-       VERIFICAR AUTENTICACIÓN
-    ======================= */
+    /*VERIFICAR AUTENTICACIÓN */
     useEffect(() => {
         supabase.auth.getSession().then(({ data }) => {
             if (!data.session) {
@@ -70,9 +64,7 @@ export default function ProductsAdminPage() {
         });
     }, []);
 
-    /* =======================
-       CARGAR PRODUCTOS
-    ======================= */
+    /* CARGAR PRODUCTOS */
     async function fetchProducts() {
         const { data, error } = await supabase
             .from("products")
@@ -84,9 +76,7 @@ export default function ProductsAdminPage() {
 
 
 
-    /* =======================
-       SUBIR IMAGEN
-    ======================= */
+    /* SUBIR IMAGEN*/
     async function uploadImage(file) {
         const ext = file.name.split(".").pop();
         const fileName = `${crypto.randomUUID()}.${ext}`;
@@ -104,9 +94,7 @@ export default function ProductsAdminPage() {
         return data.publicUrl;
     }
 
-    /* =======================
-       GUARDAR / EDITAR
-    ======================= */
+    /* GUARDAR / EDITAR */
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading(true);
@@ -153,9 +141,7 @@ export default function ProductsAdminPage() {
         }
     }
 
-    /* =======================
-       ELIMINAR
-    ======================= */
+    /* ELIMINAR */
     async function deleteProduct(id, img) {
         if (!confirm("¿Eliminar producto?")) return;
 
@@ -176,9 +162,7 @@ export default function ProductsAdminPage() {
         fetchProducts();
     }
 
-    /* =======================
-       EDITAR (CARGA FORM)
-    ======================= */
+    /*EDITAR (CARGA FORM)*/
     function startEdit(product) {
         setEditingId(product.id);
         setName(product.name);
@@ -197,9 +181,7 @@ export default function ProductsAdminPage() {
         setImageUrl("");
     }
 
-    /* =======================
-       UI
-    ======================= */
+    /* UI */
     return (
         <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5", padding: "20px" }}>
             <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
