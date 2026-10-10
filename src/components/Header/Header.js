@@ -2,12 +2,17 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import CartButton from "@/components/Cart/CartButton";
+import FavoritesLink from "@/components/Favorites/FavoritesLink";
 import style from "./header.module.css";
 
 export default function Header() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [query, setQuery] = useState("");
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -50,6 +55,25 @@ export default function Header() {
     };
   }, []);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const q = query.trim();
+    router.push(q ? `/productos?q=${encodeURIComponent(q)}` : "/productos");
+    setOpen(false);
+  };
+
+  const searchField = (
+    <form onSubmit={handleSearch} className={style.searchForm} role="search">
+      <input
+        aria-label="Buscar productos"
+        className={style.searchInput}
+        placeholder="Buscar..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+    </form>
+  );
+
   return (
     <header ref={headerRef} className={`${style.header} ${hidden ? style.hidden : ""} ${scrolled ? style.scrolled : ""}`}>
       <div className={style.top}>
@@ -65,12 +89,11 @@ export default function Header() {
             <Link href="/contacto" onClick={() => setOpen(false)}>Contacto</Link>
           </div>
 
-          {/* Buscador y carrito dentro del dropdown en mobile/tablet */}
+          {/* Buscador, favoritos y carrito dentro del dropdown en mobile/tablet */}
           <div className={style.mobileExtras}>
-            <form onSubmit={(e) => e.preventDefault()} className={style.searchForm} role="search">
-              <input aria-label="Buscar" className={style.searchInput} placeholder="Buscar..." />
-            </form>
-            <Link href="/cart" onClick={() => setOpen(false)} className={style.cartMobile}>🛒</Link>
+            {searchField}
+            <FavoritesLink />
+            <CartButton className={style.cartMobile} />
           </div>
         </nav>
 
@@ -85,11 +108,9 @@ export default function Header() {
           </button>
 
           <div className={style.actions}>
-            <form onSubmit={(e) => e.preventDefault()} className={style.searchForm}>
-              <input aria-label="Buscar" className={style.searchInput} placeholder="Buscar..." />
-            </form>
-
-            <Link href="/cart" className={style.cartBtn}>🛒</Link>
+            {searchField}
+            <FavoritesLink />
+            <CartButton className={style.cartBtn} />
           </div>
         </div>
       </div>

@@ -16,6 +16,8 @@ export default function ProductsAdminPage() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [badge, setBadge] = useState("");
+    const [category, setCategory] = useState("");
+    const [categoryOptions, setCategoryOptions] = useState([]);
     const [imageFile, setImageFile] = useState(null);
     const [imageUrl, setImageUrl] = useState("");
 
@@ -62,6 +64,18 @@ export default function ProductsAdminPage() {
                 fetchProducts();
             }
         });
+    }, []);
+
+    /* CARGAR CATEGORÍAS PARA SUGERENCIAS */
+    useEffect(() => {
+        (async () => {
+            const { data } = await supabase
+                .from("categories")
+                .select("name")
+                .order("order", { ascending: true });
+
+            setCategoryOptions((data || []).map((c) => c.name).filter(Boolean));
+        })();
     }, []);
 
     /* CARGAR PRODUCTOS */
@@ -114,6 +128,7 @@ export default function ProductsAdminPage() {
                         name,
                         price,
                         badge: badge || null,
+                        category: category || null,
                         image_url: finalImageUrl,
                     })
                     .eq("id", editingId);
@@ -125,6 +140,7 @@ export default function ProductsAdminPage() {
                     name,
                     price,
                     badge: badge || null,
+                    category: category || null,
                     image_url: finalImageUrl,
                 });
 
@@ -168,6 +184,7 @@ export default function ProductsAdminPage() {
         setName(product.name);
         setPrice(product.price);
         setBadge(product.badge || "");
+        setCategory(product.category || "");
         setImageUrl(product.image_url);
         setImageFile(null);
     }
@@ -177,6 +194,7 @@ export default function ProductsAdminPage() {
         setName("");
         setPrice("");
         setBadge("");
+        setCategory("");
         setImageFile(null);
         setImageUrl("");
     }
@@ -253,6 +271,27 @@ export default function ProductsAdminPage() {
                             boxSizing: "border-box"
                         }}
                     />
+
+                    <input
+                        type="text"
+                        placeholder="Categoría (ej: Remeras, Buzos, Accesorios)"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        list="category-options"
+                        style={{
+                            padding: "12px",
+                            border: "1px solid #ddd",
+                            borderRadius: "8px",
+                            fontSize: "14px",
+                            width: "100%",
+                            boxSizing: "border-box"
+                        }}
+                    />
+                    <datalist id="category-options">
+                        {categoryOptions.map((c) => (
+                            <option key={c} value={c} />
+                        ))}
+                    </datalist>
 
                     <input
                         type="file"

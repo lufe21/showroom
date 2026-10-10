@@ -70,9 +70,9 @@ export default function CarouselAdminPage() {
   ======================= */
   async function fetchSlides() {
     const { data } = await supabase
-      .from("carousel")
+      .from("carousel_images")
       .select("*")
-      .order("order", { ascending: true });
+      .eq("is_active", true);
 
     if (data) setSlides(data);
   }
@@ -107,9 +107,9 @@ export default function CarouselAdminPage() {
       .getPublicUrl(fileName);
 
     // guardar en tabla
-    const { error } = await supabase.from("carousel").insert({
+    const { error } = await supabase.from("carousel_images").insert({
       image_url: data.publicUrl,
-      order: slides.length + 1,
+      is_active: true,
     });
 
     if (error) {
@@ -129,7 +129,7 @@ export default function CarouselAdminPage() {
     const fileName = slide.image_url.split("/").pop();
 
     await supabase.storage.from("carousel").remove([fileName]);
-    await supabase.from("carousel").delete().eq("id", slide.id);
+    await supabase.from("carousel_images").delete().eq("id", slide.id);
 
     fetchSlides();
   }

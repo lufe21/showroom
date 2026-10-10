@@ -2,65 +2,135 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./footer.module.css";
+import {
+  SITE_NAME,
+  ADDRESS,
+  INSTAGRAM_URL,
+  CONTACT_EMAIL,
+  whatsappLink,
+} from "@/lib/config";
 
 export default function Footer() {
-    return (
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.cta}>
+        <div className={styles.ctaInner}>
+          <div className={styles.ctaCopy}>
+            <h2 className={styles.ctaTitle}>
+              ¿Lista para tu <em className={styles.ctaEm}>próximo look?</em>
+            </h2>
+            <p className={styles.ctaText}>
+              Consultanos por WhatsApp, coordinamos envíos y retiros en San
+              Martín y zona.
+            </p>
+          </div>
+          <a
+            href={whatsappLink("Hola! Quiero hacer una consulta.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.ctaBtn}
+          >
+            Escribinos por WhatsApp
+          </a>
+        </div>
+      </div>
 
+      <div className={styles.container}>
+        <div className={styles.brand}>
+          <div className={styles.logoCard}>
+            <Image
+              src="/images/logo-showroom.png"
+              alt={SITE_NAME}
+              width={140}
+              height={60}
+              className={styles.logo}
+            />
+          </div>
+          <address className={styles.address}>
+            <span className={styles.addressLine}>{ADDRESS.street}</span>
+            <span className={styles.addressLine}>{ADDRESS.city}</span>
+          </address>
+        </div>
 
-        
-        <footer className={styles.footer}>
-            <div className={styles.container}>
-                <div className={styles.brand}>
-                    <Image
-                        src="/images/logo-showroom.png"
-                        alt="Showroom"
-                        width={140}
-                        height={60}
-                        className={styles.logo}
-                    />
-                    <p className={styles.copy}>© {new Date().getFullYear()} Showroom</p>
-                    <div className={styles.addressWrap}>
-                        <svg
-                            className={styles.locationIcon}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            width="18"
-                            height="18"
-                            aria-hidden="true"
-                        >
-                            <path fill="none" d="M0 0h24v24H0z" />
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="#ff4d6d" />
-                        </svg>
-                        <address className={styles.address}>
-                            <span className={styles.addressLine}>Salguero 2223</span>
-                            <span className={styles.addressLine}>San Martin, Argentina</span>
-                        </address>
-                    </div>
-                </div>
+        <nav className={styles.nav} aria-label="Enlaces principales">
+          <p className={styles.heading}>Navegación</p>
+          <ul className={styles.linkList}>
+            <li><Link href="/">Inicio</Link></li>
+            <li><Link href="/productos">Catálogo</Link></li>
+            <li><Link href="/contacto">Contacto</Link></li>
+            <li><Link href="/admin/login">Iniciar sesión</Link></li>
+          </ul>
+        </nav>
 
-                <nav className={styles.nav} aria-label="Enlaces principales">
-                    <ul className={styles.linkList}>
-                        <li><Link href="/">Inicio</Link></li>
-                        <li><Link href="/productos">Catalogo</Link></li>
-                        <li><Link href="/contacto">Contacto</Link></li>
-                        <li><Link href="/admin/login">Iniciar Sesión</Link></li>
-                        
-                    </ul>
-                </nav>
+        <div className={styles.contact}>
+          <p className={styles.heading}>Contacto</p>
+          <a
+            href={whatsappLink("Hola! Quiero hacer una consulta.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.channel}
+          >
+            <span className={styles.dot} aria-hidden="true" /> WhatsApp directo
+          </a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className={styles.channel}>
+            <span className={styles.dot} aria-hidden="true" /> {CONTACT_EMAIL}
+          </a>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.channel}
+          >
+            <span className={styles.dot} aria-hidden="true" /> @rox.showroom24
+          </a>
+        </div>
+      </div>
 
-                <div className={styles.contact}>
-                    <p className={styles.contactTitle}>Contactanos via:</p>
-                    <div className={styles.social}>
-                        <a target="_blank" href="https://www.instagram.com/rox.showroom24/" aria-label="Instagram" className={styles.socialLink}><img src="/icons/logotipo-instagram.png" alt="Instagram" className={styles.socialIcon} /></a>
-                        <a target="_blank" href="https://api.whatsapp.com/send/?phone=1144160737&text&type=phone_number&app_absent=0" aria-label="Facebook" className={styles.socialLink}><img src="/icons/whatsapp.png" alt="WhatsApp" className={styles.socialIcon}  /></a>
-                        <a target="_blank" href="mailto:shop.nature2020@gmail.com?subject=Consulta%20desde%20la%20tienda&body=Hola%2C%20quiero%20consultar%20por%20un%20producto." aria-label="Email" className={styles.socialLink}><img src="/icons/correo-electronico.png" alt="Email" className={styles.socialIcon}  /></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div className={styles.credit}>
-                Creado por: <span className={styles.author}>Lucas.H</span>
-            </div>
-        </footer>
-    );
+      <div className={styles.socialBar}>
+        <div className={styles.social}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={INSTAGRAM_URL}
+            aria-label="Instagram"
+            className={styles.socialLink}
+          >
+            <img
+              src="/icons/logotipo-instagram.png"
+              alt=""
+              className={styles.socialIcon}
+            />
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={whatsappLink("Hola! Quiero hacer una consulta.")}
+            aria-label="WhatsApp"
+            className={styles.socialLink}
+          >
+            <img src="/icons/whatsapp.png" alt="" className={styles.socialIcon} />
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`mailto:${CONTACT_EMAIL}?subject=Consulta%20desde%20la%20tienda&body=Hola%2C%20quiero%20consultar%20por%20un%20producto.`}
+            aria-label="Email"
+            className={styles.socialLink}
+          >
+            <img
+              src="/icons/correo-electronico.png"
+              alt=""
+              className={styles.socialIcon}
+            />
+          </a>
+        </div>
+        <p className={styles.socialNote}>Respondemos en minutos</p>
+      </div>
+
+      <div className={styles.credit}>
+        © {new Date().getFullYear()} {SITE_NAME} · Creado por{" "}
+        <span className={styles.author}>Lucas.H</span>
+      </div>
+    </footer>
+  );
 }

@@ -3,95 +3,186 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 60;
-  transition: transform 240ms ease, box-shadow 240ms ease, background-color 240ms ease;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease),
+    background-color 260ms var(--ease);
   transform: translateY(0);
-  background-color: #fff;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), #ff8fb8 50%, var(--brand-dark));
 }
 
 .header.hidden {
-  transform: translateY(-110%);
+  transform: translateY(-115%);
 }
 
 .header.scrolled {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(28, 22, 32, 0.08);
 }
 
 .top {
-  /* Grid: logo | center nav | right controls */
   display: grid;
-  grid-template-columns: auto minmax(240px, 1fr) auto; /* evita anchos excesivos del nav */
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 16px;
-  padding: 16px;
-} 
-
-.right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-self: end; /* empuja el contenedor right al final (a la derecha) */
-}
-
-.menuBtn {
-  padding: 8px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 150ms ease;
-  margin-left: 0;
-  z-index: 30; /* por encima del nav para ser siempre visible y clickeable */
+  padding: 12px clamp(14px, 3vw, 28px);
+  max-width: var(--container);
+  margin: 0 auto;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-}
-.logo {
-  font-size: 18px;
-  font-weight: 600;
   display: flex;
   align-items: center;
 }
 
 .logoImg {
-  height: 100px ; /* control por altura para no estirar el navbar */
-  width: auto ;
-  max-width: 200px ;
+  height: 52px;
+  width: auto;
+  max-width: 190px;
   display: block;
   object-fit: contain;
-} 
+}
 
+.nav {
+  justify-self: center;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  width: calc(100% - 24px);
+  max-width: 760px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--radius);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 320ms var(--ease), opacity 220ms var(--ease),
+    transform 260ms var(--ease);
+}
+
+.nav.open {
+  max-height: 460px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.navLinks a {
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--ink);
+  transition: background-color 160ms var(--ease), color 160ms var(--ease);
+}
+
+.navLinks a:hover {
+  background: var(--brand-soft);
+  color: var(--brand-ink);
+}
+
+.mobileExtras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+}
+
+.actions {
+  display: none;
+  gap: 10px;
+  align-items: center;
+}
+
+.searchForm {
+  display: flex;
+}
+
+.searchInput {
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  width: 210px;
+  background: #faf6f9;
+  font-size: 0.92rem;
+  transition: border-color 160ms var(--ease), background-color 160ms var(--ease),
+    box-shadow 160ms var(--ease);
+}
+
+.searchInput::placeholder {
+  color: #a99fb0;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--brand);
+  background: #fff;
+  box-shadow: 0 0 0 4px var(--brand-soft);
+}
+
+.cartBtn {
+  font-size: 20px;
+}
+
+.cartMobile {
+  font-size: 22px;
+  align-self: flex-start;
+}
 
 .menuBtn {
   background: none;
   border: none;
-  padding: 8px;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 6px;
-  transition: background 150ms ease;
+  border-radius: 12px;
+  transition: background 150ms var(--ease);
 }
 
 .menuBtn:hover {
-  background: rgba(0,0,0,0.04);
+  background: #f6eef3;
 }
 
 .hamburger {
   display: inline-block;
   position: relative;
-  width: 20px;
+  width: 22px;
   height: 2px;
-  background: #111;
-  transition: background 150ms ease;
+  background: var(--ink);
+  transition: background 150ms var(--ease);
 }
 
 .hamburger::before,
@@ -101,16 +192,17 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: #111;
-  transition: transform 200ms ease, top 200ms ease, bottom 200ms ease, opacity 200ms ease;
+  background: var(--ink);
+  transition: transform 220ms var(--ease), top 220ms var(--ease),
+    bottom 220ms var(--ease);
 }
 
 .hamburger::before {
-  top: -6px;
+  top: -7px;
 }
 
 .hamburger::after {
-  bottom: -6px;
+  bottom: -7px;
 }
 
 .menuBtn[aria-expanded="true"] .hamburger {
@@ -127,155 +219,15 @@
   bottom: 0;
 }
 
-/* NAV LINKS */
-.nav {
-  /* dropdown animado para mobile/tablet, centrado respecto a la columna del nav */
-  justify-self: center; /* asegura que la columna central quede centrada */
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-6px);
-  width: calc(100% - 32px);
-  max-width: 760px;
-  background: #fff;
-  border-top: 1px solid #eee;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 8px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 280ms ease, opacity 220ms ease, transform 220ms ease;
-}
-
-/* cuando está abierto */
-.nav.open {
-  max-height: 420px; /* suficiente para unos cuantos items */
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.navLinks {
-  display: flex;
-  gap: 20px;
-  font-weight: 600;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.navLinks a {
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background-color 150ms ease, transform 150ms ease;
-}
-
-.navLinks a:hover {
-  
-  transform: scale(1.1);
-  text-decoration: underline 4px;
-  text-decoration-color: rgba(252, 147, 199, 0.9);
-  text-decoration-thickness: 4px;
-  text-underline-offset: 6px; /* separa la línea para evitar superposición con descendientes */
-  text-decoration-skip-ink: none; /* evita que la línea se 'saltee' en letras como la g */
-}
-
-.navLinks a:active {
-  transform: scale(0.95);
-}
-
-.mobileExtras {
-  display: none; /* oculto en desktop, se muestra en móviles */
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  padding-top: 6px;
-  border-top: 1px solid #f0f0f0;
-}
-
-.mobileExtras .searchForm {
-  width: 100%;
-}
-
-.mobileExtras .searchInput {
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid #eee;
-}
-
-.mobileExtras .cartMobile {
-  font-size: 22px;
-}
-
-@media (max-width: 899px) {
-  .mobileExtras {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .actions {
-    display: none;
-  }
-}
-
-/* En móviles mostramos columnas */
-@media (max-width: 899px) {
-  .navLinks {
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
-  }
-
-  .navLinks a {
-    padding: 10px 12px;
-    display: block;
-    text-align: center;
-    width: 100%;
-    border-radius: 6px;
-  }
-}
-/* Actions: búsqueda y carrito (solo visible en desktop) */
-.actions {
-  display: none;
-  gap: 12px;
-  align-items: center;
-  margin-left: auto; /* empuja acciones a la derecha */
-}
-
-.searchForm {
-  display: flex;
-}
-
-.searchInput {
-  padding: 6px 10px;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-  width: 200px;
-}
-
-.cartBtn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* Desktop: navbar horizontal, links centrados, acciones a la derecha */
+/* ---------- Desktop ---------- */
 @media (min-width: 900px) {
   .menuBtn {
     display: none;
   }
 
-  /* mantengo logo a la izquierda y acciones a la derecha; centramos las links (Inicio/Catalogo/Contacto) en el medio */
   .top {
+    padding: 12px 28px;
     position: relative;
-    padding: 12px 24px;
   }
 
   .nav {
@@ -283,25 +235,57 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    width: auto;
+    max-width: none;
+    background: transparent;
+    border: none;
     box-shadow: none;
     border-radius: 0;
     max-height: none;
     opacity: 1;
     overflow: visible;
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
     padding: 0;
-    border-top: none;
-    align-items: center;
-    justify-content: center;
-    width: auto; /* ajusta según el contenido */
-    z-index: 20;
+    flex-direction: row;
+    gap: 6px;
     pointer-events: auto;
   }
 
   .navLinks {
-    gap: 32px;
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .navLinks a {
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    position: relative;
+  }
+
+  .navLinks a:hover {
+    background: transparent;
+    color: var(--brand-ink);
+  }
+
+  .navLinks a::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 4px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--brand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 220ms var(--ease);
+  }
+
+  .navLinks a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .mobileExtras {
+    display: none;
   }
 
   .actions {
@@ -309,32 +293,27 @@
   }
 
   .logoImg {
-    height: 50px !important; /* tamaño moderado en desktop */
-    width: auto !important;
-    max-width: 200px !important;
+    height: 50px;
   }
 }
 
-
-/* Ajustes para tablets y móviles más pequeños */
 @media (max-width: 899px) {
   .logoImg {
-    height: 46px !important;
-    width: auto !important;
+    height: 44px;
   }
 
   .searchInput {
-    width: 140px;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .navLinks {
-    gap: 12px;
+  .logoImg {
+    height: 40px;
+    max-width: 150px;
   }
 
-  .searchInput {
-    width: 120px;
+  .top {
+    padding: 10px 14px;
   }
 }
-

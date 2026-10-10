@@ -1,78 +1,149 @@
 .footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-    background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
-    padding: 28px 0;
-    color: #333;
+    margin-top: 40px;
+    background:
+        radial-gradient(60% 70% at 82% 0%, rgba(255, 77, 141, 0.16), transparent 60%),
+        radial-gradient(45% 55% at 4% 100%, rgba(178, 132, 255, 0.1), transparent 55%),
+        var(--ink);
+    color: #f3e9ef;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ------- BANDA CTA ------- */
+.cta {
+    max-width: var(--container);
+    margin: 0 auto 28px;
+    padding: 0 clamp(14px, 4vw, 28px);
+}
+
+.ctaInner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    border-radius: var(--radius);
+    background: linear-gradient(120deg, var(--brand) 0%, var(--brand-dark) 60%, var(--brand-ink) 100%);
+    color: #fff;
+    padding: 18px clamp(18px, 4vw, 32px);
+    box-shadow: var(--shadow-lg);
+    animation: fadeUp 0.6s var(--ease) both;
+}
+
+.ctaInner::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    top: -100px;
+    right: -80px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.22), transparent 62%);
+}
+
+.ctaCopy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.ctaTitle {
+    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    color: #fff;
+    margin: 0;
+}
+
+.ctaText {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.ctaBtn {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: var(--brand-ink);
+    font-weight: 700;
+    font-size: 0.92rem;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+    transition: transform 160ms var(--ease), box-shadow 160ms var(--ease);
+}
+
+.ctaBtn:hover {
+    transform: translateY(-2px);
+}
+
+/* ------- COLUMNAS ------- */
 .container {
-    max-width: 1200px;
+    max-width: var(--container);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(16px, 4vw, 28px) 22px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr 1.2fr;
     align-items: start;
-    gap: 20px;
+    gap: 24px;
 }
 
 .brand {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
+    animation: fadeUp 0.6s var(--ease) 0.1s both;
+}
+
+.logoCard {
+    background: #fff;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    box-shadow: var(--shadow-sm);
 }
 
 .logo {
     object-fit: contain;
-}
-
-.copy {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #666;
+    max-width: 118px;
+    height: auto;
+    display: block;
 }
 
 .address {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    margin-top: 6px;
+    font-style: normal;
+    color: #b8a8b6;
+    font-size: 0.85rem;
 }
 
 .addressLine {
-    font-size: 0.85rem;
-    color: #666;
-    line-height: 1.2;
-}
-
-.addressWrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.locationIcon {
-    flex: 0 0 auto;
-    width: 20px;
-    height: 20px;
-}
-
-.credit {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(0,0,0,0.04);
-    text-align: center;
-    font-size: 0.85rem;
-    color: #666;
-}
-
-.author {
-    font-weight: 600;
-    color: #333;
-    margin-left: 6px;
+    line-height: 1.4;
 }
 
 .nav {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeUp 0.6s var(--ease) 0.18s both;
+}
+
+.heading {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--brand);
 }
 
 .linkList {
@@ -81,94 +152,179 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
 }
 
 .linkList a {
-    color: #333;
+    color: #efe1ec;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.93rem;
+    display: inline-block;
+    transition: color 160ms var(--ease), transform 160ms var(--ease);
 }
 
 .linkList a:hover {
-    text-decoration: underline;
-    text-decoration-color: rgba(252, 147, 199, 0.9);
+    color: #ff8fb8;
+    transform: translateX(4px);
 }
 
 .contact {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    gap: 9px;
+    animation: fadeUp 0.6s var(--ease) 0.26s both;
 }
 
-.contactTitle {
-    margin: 0;
-    font-weight: 600;
+.channel {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #efe1ec;
+    text-decoration: none;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+    transition: color 160ms var(--ease);
+}
+
+.channel:hover {
+    color: #ff8fb8;
+}
+
+.dot {
+    flex: 0 0 auto;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 0 4px rgba(255, 77, 141, 0.18);
+}
+
+/* ------- REDES ------- */
+.socialBar {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 12px clamp(16px, 4vw, 28px);
+    animation: fadeUp 0.6s var(--ease) 0.32s both;
 }
 
 .social {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .socialLink {
-    width: 44px;
-    height: 44px;
+    width: 38px;
+    height: 38px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 999px;
-    background: transparent;
-    color: inherit;
-    text-decoration: none;
-    overflow: hidden;
-    transition: transform 0.18s ease;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: transform 0.18s var(--ease), background-color 0.18s var(--ease);
 }
 
 .socialLink:hover {
-    transform: translateY(-3px) scale(1.03);
+    transform: translateY(-3px) scale(1.06);
+    background: var(--brand);
+    border-color: var(--brand);
 }
 
-.socialLink img {
-    width: 20px;
-    height: 20px;
+.socialIcon {
+    width: 17px;
+    height: 17px;
     display: block;
+    filter: brightness(0) invert(1);
 }
 
-/* Mobile */
+.socialNote {
+    margin: 0;
+    color: #b8a8b6;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ------- PIE ------- */
+.credit {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 11px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #9c8b99;
+}
+
+.author {
+    font-weight: 700;
+    color: var(--brand);
+    margin-left: 2px;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ctaInner,
+    .brand,
+    .nav,
+    .contact,
+    .socialBar {
+        animation: none;
+    }
+}
+
 @media (max-width: 768px) {
+    .footer {
+        margin-top: 40px;
+    }
+
+    .ctaInner {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .ctaBtn {
+        width: 100%;
+        justify-content: center;
+    }
+
     .container {
         grid-template-columns: 1fr;
-        text-align: center;
-        align-items: center;
-        gap: 12px;
+        gap: 28px;
     }
 
-    .contact {
-        align-items: center;
+    .brand {
+        align-items: flex-start;
     }
 
-    .contactTitle {
-        text-align: center;
-    }
-
-    .linkList {
-        align-items: center;
-    }
-
-    .social {
+    .socialBar {
         justify-content: center;
-        gap: 12px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .logoCard {
+        width: 100%;
+        text-align: center;
     }
 
-    .socialLink {
-        width: 48px;
-        height: 48px;
-    }
-
-    .socialLink img {
-        width: 22px;
-        height: 22px;
+    .logo {
+        margin: 0 auto;
     }
 }

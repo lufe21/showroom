@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import styles from "./login.module.css";
@@ -11,6 +11,13 @@ export default function AdminLogin() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("error") === "forbidden") {
+            setError("Tu cuenta no tiene permisos de administrador");
+        }
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -34,7 +41,7 @@ export default function AdminLogin() {
         <div className={styles.container}>
             <div className={styles.card}>
                 <div className={styles.header}>
-                    <h1 className={styles.title}>Inicio de sesion</h1>
+                    <h1 className={styles.title}>Inicio de sesión</h1>
                     <p className={styles.subtitle}>Inicia sesión en tu cuenta</p>
                 </div>
 

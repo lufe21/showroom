@@ -1,58 +1,118 @@
 .carousel {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    height: auto;
-    max-height: 70vh;
-    overflow: hidden;
-    touch-action: pan-y;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 72vh;
+  overflow: hidden;
+  touch-action: pan-y;
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
 }
 
-/* IMÁGENES */
 .image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.9s var(--ease), transform 6s ease-out;
 }
 
 .active {
-    opacity: 1;
+  opacity: 1;
+  transform: scale(1);
 }
 
-/* DOTS */
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 10, 18, 0.6) 0%,
+    rgba(24, 10, 18, 0.28) 42%,
+    rgba(24, 10, 18, 0.05) 72%,
+    transparent 100%
+  );
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  line-height: 0;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background 180ms var(--ease), transform 180ms var(--ease);
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.prev {
+  left: 18px;
+}
+
+.next {
+  right: 18px;
+}
+
 .dots {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
 }
 
 .dot {
-    width: 24px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.5);
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  width: 26px;
+  height: 4px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), width 0.3s var(--ease);
 }
 
 .activeDot {
-    background: white;
+  background: #fff;
+  width: 40px;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .carousel {
-        max-height: 45vh;
-    }
+@media (min-width: 900px) {
+  .arrow {
+    display: flex;
+  }
+}
 
-    .dot {
-        width: 18px;
-    }
+@media (max-width: 768px) {
+  .carousel {
+    aspect-ratio: 4 / 5;
+    max-height: 62vh;
+  }
+
+  .dot {
+    width: 20px;
+  }
+
+  .activeDot {
+    width: 30px;
+  }
 }
