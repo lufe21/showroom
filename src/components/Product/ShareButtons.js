@@ -39,7 +39,9 @@ async function copyText(text) {
 
 export default function ShareButtons({ product }) {
   const [state, setState] = useState("idle");
-  const url = `${SITE_URL}/productos/${product.id}`;
+  const origin =
+    typeof window !== "undefined" ? window.location.origin : SITE_URL;
+  const url = `${origin}/productos/${product.id}`;
   const text = `Mirá este producto en Showroom Rox: ${product.name} — ${url}`;
   const waShare = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
 
