@@ -66,8 +66,8 @@
 
 /* Variante para el detalle */
 .heartBtnDetail {
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   border: 1.5px solid var(--line);
   background: #fff;
   box-shadow: none;

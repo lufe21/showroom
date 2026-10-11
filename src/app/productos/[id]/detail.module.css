@@ -135,19 +135,19 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
   margin-top: 12px;
 }
 
 .addBtn {
-  flex: 1;
-  min-width: 180px;
-  padding: 15px 24px;
+  flex: 0 0 auto;
+  padding: 13px 24px;
   border: none;
   border-radius: var(--radius-pill);
   background: linear-gradient(135deg, var(--brand), var(--brand-dark));
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 12px 26px rgba(214, 38, 113, 0.28);
@@ -164,13 +164,12 @@
 }
 
 .waBtn {
-  flex: 1;
-  min-width: 170px;
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 15px 20px;
+  padding: 13px 20px;
   border-radius: var(--radius-pill);
   background: #25d366;
   color: #fff;
@@ -251,7 +250,7 @@
   }
 
   .favBtn {
-    flex: 0 0 50px;
+    flex: 0 0 48px;
   }
 
   .waBtn {

@@ -46,6 +46,12 @@
   color: #0d7a36;
 }
 
+.copied {
+  background: #eafaf0;
+  border-color: #b3e6c5;
+  color: #0d7a36;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .button {
     transition: none;
