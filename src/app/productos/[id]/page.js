@@ -195,7 +195,13 @@ export default async function ProductDetail({ params }) {
               rel="noopener noreferrer"
               className={styles.waBtn}
             >
-              <img src="/icons/whatsapp.png" alt="" width={22} height={22} />
+              <img
+                src="/icons/whatsapp.png"
+                alt=""
+                width={22}
+                height={22}
+                className="wa-white"
+              />
               Consultar por WhatsApp
             </a>
           </div>

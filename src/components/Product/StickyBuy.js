@@ -36,7 +36,13 @@ export default function StickyBuy({ product, waText }) {
           className={styles.waBtn}
           aria-label="Consultar por WhatsApp"
         >
-          <img src="/icons/whatsapp.png" alt="" width={20} height={20} />
+          <img
+            src="/icons/whatsapp.png"
+            alt=""
+            width={20}
+            height={20}
+            className="wa-white"
+          />
           WhatsApp
         </a>
       </div>

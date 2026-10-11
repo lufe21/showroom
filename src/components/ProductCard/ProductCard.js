@@ -65,7 +65,13 @@ export default function ProductCard({ id, image, title, price, badge, category }
               className={style.waButton}
               aria-label={`Consultar por WhatsApp: ${title}`}
             >
-              <img src="/icons/whatsapp.png" alt="" width={20} height={20} />
+              <img
+                src="/icons/whatsapp.png"
+                alt=""
+                width={20}
+                height={20}
+                className="wa-white"
+              />
             </a>
           </div>
         </div>

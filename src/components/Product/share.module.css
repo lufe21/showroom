@@ -36,14 +36,15 @@
 }
 
 .wa {
-  background: #ebf9f0;
-  border-color: #c3ecce;
-  color: #0d7a36;
+  background: #25d366;
+  border-color: #25d366;
+  color: #fff;
 }
 
 .wa:hover {
-  border-color: #25d366;
-  color: #0d7a36;
+  background: #1eb455;
+  border-color: #1eb455;
+  color: #fff;
 }
 
 .copied {

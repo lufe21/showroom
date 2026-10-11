@@ -63,7 +63,13 @@ export default function ShareButtons({ product }) {
         rel="noopener noreferrer"
         className={`${styles.button} ${styles.wa}`}
       >
-        <img src="/icons/whatsapp.png" alt="" width={16} height={16} />
+        <img
+          src="/icons/whatsapp.png"
+          alt=""
+          width={16}
+          height={16}
+          className="wa-white"
+        />
         WhatsApp
       </a>
       <button
